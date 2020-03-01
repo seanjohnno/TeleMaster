@@ -11,3 +11,11 @@ class QueryByAscendingRent:
         all_masts = self.__mast_repository.list_all_masts()
         ascending_rent_sorted_masts = sorted(all_masts, key=mobile_phone_mast_repository.MobilePhoneMastInfo.rent)
         return ascending_rent_sorted_masts[:QueryByAscendingRent.ITEM_LIMIT]
+
+class QueryBy25LeaseYears:
+
+    def __init__(self, mast_repository: mobile_phone_mast_repository.MobilePhoneMastRepository):
+        self.__mast_repository = mast_repository
+
+    def list_masts(self):
+        return []

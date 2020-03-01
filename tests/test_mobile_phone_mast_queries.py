@@ -2,7 +2,7 @@ import unittest
 from unittest import mock
 from telemaster import mobile_phone_mast_repository, mobile_phone_mast_queries
 
-class TestOrderingByRent(unittest.TestCase):
+class TestOrderingByRentQuery(unittest.TestCase):
 
     def test_masts_ordered_by_rent_in_ascending_order(self):
         mock_mast_repository = mock.MagicMock()
@@ -31,4 +31,25 @@ class TestOrderingByRent(unittest.TestCase):
     def __mock_mast_with_rent(self, rent: int) -> mobile_phone_mast_repository.MobilePhoneMastInfo:
         return mobile_phone_mast_repository.MobilePhoneMastInfo({
             'Current Rent': rent
+        })
+
+class TestLeaseYearsEqual25Query(unittest.TestCase):
+
+    def test_masts_ordered_by_rent_in_ascending_order(self):
+        mock_mast_repository = mock.MagicMock()
+        mock_mast_repository.list_all_masts.return_value = [
+            self.__mock_mast_with_lease_years(26),
+            self.__mock_mast_with_lease_years(25),
+            self.__mock_mast_with_lease_years(24)
+        ]
+
+        query_ascending_rent = mobile_phone_mast_queries.QueryBy25LeaseYears(mock_mast_repository)
+        masts = query_ascending_rent.list_masts()
+
+        self.assertEqual(len(masts), 1)
+        self.assertEqual(masts[0].lease_years(), 25)
+    
+    def __mock_mast_with_lease_years(self, lease_years: int) -> mobile_phone_mast_repository.MobilePhoneMastInfo:
+        return mobile_phone_mast_repository.MobilePhoneMastInfo({
+            'Lease Years': lease_years
         })
