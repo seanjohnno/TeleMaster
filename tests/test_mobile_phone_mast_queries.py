@@ -78,3 +78,30 @@ class TestMastCountByTenantQuery(unittest.TestCase):
         return mobile_phone_mast_repository.MobilePhoneMastInfo({
             'Tenant Name': tenant_name
         })
+
+class TestLeaseDateIsBetweenDatesQuery(unittest.TestCase):
+    
+    START_DATE = '01 Jun 1999'
+    END_DATE = '31 Aug 2007'
+
+    def test_masts_with_lease_date_within_date_range_are_returned(self):
+        mock_mast_repo = mock.MagicMock()
+        mock_mast_repo.all_masts.return_value = [
+            self.__create_mast_with_lease_start_date('01 Sep 2007'),
+            self.__create_mast_with_lease_start_date('21 Mar 2001'),
+            self.__create_mast_with_lease_start_date('05 Jul 1994'),
+            self.__create_mast_with_lease_start_date('28 Oct 2005')
+        ]
+
+        mast_provider = mobile_phone_mast_queries.QueryLeaseIsBetweenDates(mock_mast_repo)
+        masts = mast_provider.list_masts()
+        
+        self.assertEqual(len(masts), 2)
+        self.assertEqual(masts[0].lease_start_date(), '21 Mar 2001')
+        self.assertEqual(masts[1].lease_start_date(), '28 Oct 2005')
+
+
+    def __create_mast_with_lease_start_date(self, lease_start_date: str) -> mobile_phone_mast_repository.MobilePhoneMastInfo:
+        return mobile_phone_mast_repository.MobilePhoneMastInfo({
+            'Lease Start Date': lease_start_date
+        })

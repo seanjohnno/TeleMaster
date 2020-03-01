@@ -17,6 +17,9 @@ class MobilePhoneMastInfo:
     def tenant_name(self):
         return self.__csv_row['Tenant Name']
 
+    def lease_start_date(self):
+        return self.__csv_row['Lease Start Date']
+
 class MobilePhoneMastRepository:
     def __init__(self, csv_file_location: str):
         self.__csv_file_location = csv_file_location
