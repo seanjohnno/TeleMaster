@@ -86,7 +86,7 @@ class TestLeaseDateIsBetweenDatesQuery(unittest.TestCase):
 
     def test_masts_with_lease_date_within_date_range_are_returned(self):
         mock_mast_repo = mock.MagicMock()
-        mock_mast_repo.all_masts.return_value = [
+        mock_mast_repo.list_all_masts.return_value = [
             self.__create_mast_with_lease_start_date('01 Sep 2007'),
             self.__create_mast_with_lease_start_date('21 Mar 2001'),
             self.__create_mast_with_lease_start_date('05 Jul 1994'),
