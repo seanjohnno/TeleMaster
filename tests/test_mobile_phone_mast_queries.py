@@ -35,7 +35,7 @@ class TestOrderingByRentQuery(unittest.TestCase):
 
 class TestLeaseYearsEqual25Query(unittest.TestCase):
 
-    def test_masts_ordered_by_rent_in_ascending_order(self):
+    def test_only_masts_with_25_lease_years_are_returned(self):
         mock_mast_repository = mock.MagicMock()
         mock_mast_repository.list_all_masts.return_value = [
             self.__mock_mast_with_lease_years(26),

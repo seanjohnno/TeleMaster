@@ -11,7 +11,7 @@ class QueryByAscendingRent:
     def __init__(self, mast_repository: mobile_phone_mast_repository.MobilePhoneMastRepository):
         self.__mast_repository = mast_repository
 
-    def list_masts(self):
+    def list_masts(self) -> List[mobile_phone_mast_repository.MobilePhoneMastRepository]:  
         all_masts = self.__mast_repository.list_all_masts()
         ascending_rent_sorted_masts = sorted(all_masts, key=mobile_phone_mast_repository.MobilePhoneMastInfo.rent)
         return ascending_rent_sorted_masts[:QueryByAscendingRent.ITEM_LIMIT]
@@ -23,7 +23,7 @@ class QueryBy25LeaseYears:
     def __init__(self, mast_repository: mobile_phone_mast_repository.MobilePhoneMastRepository):
         self.__mast_repository = mast_repository
 
-    def list_masts(self):
+    def list_masts(self) -> List[mobile_phone_mast_repository.MobilePhoneMastRepository]:
         all_masts = self.__mast_repository.list_all_masts()
         return [mast for mast in all_masts if mast.lease_years() == QueryBy25LeaseYears._25_LEASE_YEARS]
 
@@ -43,7 +43,7 @@ class QueryLeaseIsBetweenDates:
     def __init__(self, mast_repository: mobile_phone_mast_repository.MobilePhoneMastRepository):
         self.__mast_repository = mast_repository
 
-    def list_masts(self):
+    def list_masts(self) -> List[mobile_phone_mast_repository.MobilePhoneMastRepository]:
         start_date = QueryLeaseIsBetweenDates.JUNE_1ST_1999
         end_date = QueryLeaseIsBetweenDates.AUGUST_31ST_2007
 
