@@ -1,3 +1,4 @@
+from typing import Dict
 from telemaster import mobile_phone_mast_repository
 
 class QueryByAscendingRent:
@@ -22,3 +23,11 @@ class QueryBy25LeaseYears:
     def list_masts(self):
         all_masts = self.__mast_repository.list_all_masts()
         return [mast for mast in all_masts if mast.lease_years() == QueryBy25LeaseYears._25_LEASE_YEARS]
+
+class QueryTenantMastCounts:
+
+    def __init__(self, mast_repository: mobile_phone_mast_repository.MobilePhoneMastRepository):
+        self.__mast_repository = mast_repository
+
+    def list_tentant_mast_counts(self) -> Dict[str, int]:
+        return {}

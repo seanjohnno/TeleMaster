@@ -53,3 +53,28 @@ class TestLeaseYearsEqual25Query(unittest.TestCase):
         return mobile_phone_mast_repository.MobilePhoneMastInfo({
             'Lease Years': lease_years
         })
+
+class TestMastCountByTenantQuery(unittest.TestCase):
+    
+    def test_correct_mast_counts_are_assigned_to_tenants(self):
+        mock_mast_repo = mock.MagicMock()
+        mock_mast_repo.all_masts.return_value = [
+            self.__mock_mast_with_tenant_name('Arqiva Ltd'),
+            self.__mock_mast_with_tenant_name('Vodafone Ltd'),
+            self.__mock_mast_with_tenant_name('Arqiva Ltd'),
+            self.__mock_mast_with_tenant_name('Vodafone Ltd'),
+            self.__mock_mast_with_tenant_name('Vodafone Ltd')
+        ]
+
+        mast_provider = mobile_phone_mast_queries.QueryTenantMastCounts(mock_mast_repo)
+        tenant_to_mastcount_dict = mast_provider.list_tentant_mast_counts()
+        
+        self.assertEqual(tenant_to_mastcount_dict, {
+            'Arqiva Ltd': 2,
+            'Vodafone Ltd': 3
+        })
+
+    def __mock_mast_with_tenant_name(self, tenant_name: str) -> mobile_phone_mast_repository.MobilePhoneMastInfo:
+        return mobile_phone_mast_repository.MobilePhoneMastInfo({
+            'Tenant Name': tenant_name
+        })
