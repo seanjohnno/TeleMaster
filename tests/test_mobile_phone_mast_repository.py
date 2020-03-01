@@ -5,6 +5,7 @@ from telemaster import mobile_phone_mast_repository
 class TestMastRepository(unittest.TestCase):
 
     EXPECTED_ROW_COUNT = 42
+    THEAKER_LANE_CSV_ROW = 9
 
     def test_expected_row_count_is_loaded(self):
         csv_file_location = self.__get_mobile_phone_mast_csv_path()
@@ -20,7 +21,8 @@ class TestMastRepository(unittest.TestCase):
         repository = mobile_phone_mast_repository.MobilePhoneMastRepository(csv_file_location)
         mobile_telephone_mast_list = repository.list_all_masts()
 
-        actual_property_name = mobile_telephone_mast_list[10].property_name()
+        theaker_lane_mast = mobile_telephone_mast_list[TestMastRepository.THEAKER_LANE_CSV_ROW]
+        actual_property_name = theaker_lane_mast.property_name()
         expected_property_name = 'Theaker Lane'
         self.assertEqual(actual_property_name, expected_property_name)
 
