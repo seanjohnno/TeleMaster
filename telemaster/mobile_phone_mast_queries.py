@@ -14,8 +14,11 @@ class QueryByAscendingRent:
 
 class QueryBy25LeaseYears:
 
+    _25_LEASE_YEARS = 25
+
     def __init__(self, mast_repository: mobile_phone_mast_repository.MobilePhoneMastRepository):
         self.__mast_repository = mast_repository
 
     def list_masts(self):
-        return []
+        all_masts = self.__mast_repository.list_all_masts()
+        return [mast for mast in all_masts if mast.lease_years() == QueryBy25LeaseYears._25_LEASE_YEARS]
