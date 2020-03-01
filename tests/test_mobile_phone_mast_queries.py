@@ -19,6 +19,15 @@ class TestOrderingByRent(unittest.TestCase):
         self.assertEqual(masts[1].rent(), 2000)
         self.assertEqual(masts[2].rent(), 3000)
 
+    def test_masts_returned_are_limited_to_5_items(self):
+        mock_mast_repository = mock.MagicMock()
+        mock_mast_repository.list_all_masts.return_value = [self.__mock_mast_with_rent(rent = (x * 1000)) for x in range(0, 20)]
+
+        query_ascending_rent = mobile_phone_mast_queries.QueryByAscendingRent(mock_mast_repository)
+        masts = query_ascending_rent.list_masts()
+
+        self.assertEqual(len(masts), 5)
+
     def __mock_mast_with_rent(self, rent: int) -> mobile_phone_mast_repository.MobilePhoneMastInfo:
         return mobile_phone_mast_repository.MobilePhoneMastInfo({
             'Current Rent': rent
