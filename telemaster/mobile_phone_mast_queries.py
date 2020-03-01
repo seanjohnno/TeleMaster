@@ -1,5 +1,6 @@
-from typing import Dict
+import collections
 from telemaster import mobile_phone_mast_repository
+from typing import Dict
 
 class QueryByAscendingRent:
 
@@ -30,4 +31,4 @@ class QueryTenantMastCounts:
         self.__mast_repository = mast_repository
 
     def list_tentant_mast_counts(self) -> Dict[str, int]:
-        return {}
+        return collections.Counter( [ row.tenant_name() for row in self.__mast_repository.list_all_masts() ] )
