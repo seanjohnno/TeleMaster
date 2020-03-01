@@ -8,6 +8,9 @@ class MobilePhoneMastInfo:
     def property_name(self):
         return self.__csv_row['Property Name']
 
+    def rent(self):
+        return self.__csv_row['Current Rent']
+
 class MobilePhoneMastRepository:
     def __init__(self, csv_file_location: str):
         self.__csv_file_location = csv_file_location

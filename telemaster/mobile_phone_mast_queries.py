@@ -5,4 +5,5 @@ class QueryByAscendingRent:
         self.__mast_repository = mast_repository
 
     def list_masts(self):
-        return []
+        all_masts = self.__mast_repository.list_all_masts()
+        return sorted(all_masts, key=mobile_phone_mast_repository.MobilePhoneMastInfo.rent)
