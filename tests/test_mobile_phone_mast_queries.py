@@ -58,7 +58,7 @@ class TestMastCountByTenantQuery(unittest.TestCase):
     
     def test_correct_mast_counts_are_assigned_to_tenants(self):
         mock_mast_repo = mock.MagicMock()
-        mock_mast_repo.all_masts.return_value = [
+        mock_mast_repo.list_all_masts.return_value = [
             self.__mock_mast_with_tenant_name('Arqiva Ltd'),
             self.__mock_mast_with_tenant_name('Vodafone Ltd'),
             self.__mock_mast_with_tenant_name('Arqiva Ltd'),
