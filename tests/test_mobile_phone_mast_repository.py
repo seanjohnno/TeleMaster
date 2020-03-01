@@ -14,6 +14,17 @@ class TestMastRepository(unittest.TestCase):
 
         self.assertEqual(len(mobile_telephone_mast_list), TestMastRepository.EXPECTED_ROW_COUNT)
 
+    def test_expected_row_data_is_loaded(self):
+        csv_file_location = self.__get_mobile_phone_mast_csv_path()
+
+        repository = mobile_phone_mast_repository.MobilePhoneMastRepository(csv_file_location)
+        mobile_telephone_mast_list = repository.list_all_masts()
+
+        actual_property_name = mobile_telephone_mast_list[10].property_name()
+        expected_property_name = 'Theaker Lane'
+        self.assertEqual(actual_property_name, expected_property_name)
+
+
     def __get_mobile_phone_mast_csv_path(self):
         root_dir = pathlib.Path(__file__).parent.parent
         return root_dir.joinpath("data").joinpath("masts.csv")

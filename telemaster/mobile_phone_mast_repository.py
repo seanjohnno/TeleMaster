@@ -5,6 +5,9 @@ class MobilePhoneMastInfo:
     def __init__(self, csv_row):
         self.__csv_row = csv_row
 
+    def property_name(self):
+        return ''
+
 class MobilePhoneMastRepository:
     def __init__(self, csv_file_location: str):
         self.__csv_file_location = csv_file_location
