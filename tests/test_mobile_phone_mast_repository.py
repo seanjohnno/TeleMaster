@@ -1,3 +1,4 @@
+import datetime
 import pathlib
 import unittest
 from telemaster import mobile_phone_mast_repository
@@ -26,8 +27,8 @@ class TestMastRepository(unittest.TestCase):
         self.assertEquals(theaker_lane_mast.rent(), '12750.00')
         self.assertEquals(theaker_lane_mast.lease_years(), '10')
         self.assertEquals(theaker_lane_mast.tenant_name(), 'Everything Everywhere Ltd')
-        self.assertEquals(theaker_lane_mast.lease_start_date(), '29 Apr 2008')
-        self.assertEquals(theaker_lane_mast.lease_end_date(), '28 Apr 2018')  
+        self.assertEquals(theaker_lane_mast.lease_start_date(), datetime.date(2008, 4, 29))
+        self.assertEquals(theaker_lane_mast.lease_end_date(), datetime.date(2018, 4, 28))  
         self.assertEquals(theaker_lane_mast.property_1st_line_address(), 'Burnsall Grange')  
         self.assertEquals(theaker_lane_mast.property_2nd_line_address(), 'Leeds')  
         self.assertEquals(theaker_lane_mast.property_3rd_line_address(), '')  

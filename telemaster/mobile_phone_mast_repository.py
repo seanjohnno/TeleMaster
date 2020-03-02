@@ -1,4 +1,6 @@
 import csv
+import datetime
+import time
 from typing import List
 
 class MobilePhoneMastInfo:
@@ -18,7 +20,8 @@ class MobilePhoneMastInfo:
         return self.__csv_row['Tenant Name']
 
     def lease_start_date(self):
-        return self.__csv_row['Lease Start Date']
+        date = self.__csv_row['Lease Start Date']
+        return self.__parse_date(date)
 
     def property_1st_line_address(self):
         return self.__csv_row['Property Address [1]']
@@ -36,10 +39,15 @@ class MobilePhoneMastInfo:
         return self.__csv_row['Unit Name']
     
     def lease_end_date(self):
-        return self.__csv_row['Lease End Date']
+        date = self.__csv_row['Lease End Date']
+        return self.__parse_date(date)
     
     def current_rent(self):
         return self.__csv_row['Current Rent']
+
+    def __parse_date(self, date):
+        parsed_date_struct = time.strptime(date, '%d %b %Y')
+        return datetime.date(parsed_date_struct[0], parsed_date_struct[1], parsed_date_struct[2])
 
 class MobilePhoneMastRepository:
     def __init__(self, csv_file_location: str):

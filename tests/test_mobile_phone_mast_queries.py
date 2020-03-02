@@ -1,3 +1,4 @@
+import datetime
 import unittest
 from unittest import mock
 from telemaster import mobile_phone_mast_repository, mobile_phone_mast_queries
@@ -97,8 +98,8 @@ class TestLeaseDateIsBetweenDatesQuery(unittest.TestCase):
         masts = mast_provider.list_masts()
         
         self.assertEqual(len(masts), 2)
-        self.assertEqual(masts[0].lease_start_date(), '21 Mar 2001')
-        self.assertEqual(masts[1].lease_start_date(), '28 Oct 2005')
+        self.assertEqual(masts[0].lease_start_date(),  datetime.date(2001, 3, 21))
+        self.assertEqual(masts[1].lease_start_date(), datetime.date(2005, 10, 28))
 
 
     def __create_mast_with_lease_start_date(self, lease_start_date: str) -> mobile_phone_mast_repository.MobilePhoneMastInfo:

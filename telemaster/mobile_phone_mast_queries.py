@@ -51,9 +51,7 @@ class QueryLeaseIsBetweenDates:
         return [mast for mast in all_masts if self.__mast_is_within_dates_inclusive(mast, start_date, end_date)]
 
     def __mast_is_within_dates_inclusive(self, mast, start_date, end_date):
-        parsed_date_struct = time.strptime(mast.lease_start_date(), '%d %b %Y')
-        parsed_date = datetime.date(parsed_date_struct[0], parsed_date_struct[1], parsed_date_struct[2])
-
-        if parsed_date >= start_date and parsed_date <= end_date:
+        lease_start_date = mast.lease_start_date()
+        if lease_start_date >= start_date and lease_start_date <= end_date:
             return True
         return False

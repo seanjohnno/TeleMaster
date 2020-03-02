@@ -12,7 +12,7 @@ class IMastInfoPresenter:
 
 class FullMastInfoPresenter(IMastInfoPresenter):
 
-    def __init__(self, mast_info_items: List[mobile_phone_mast_repository.MobilePhoneMastInfo], *, date_format: str = None):
+    def __init__(self, mast_info_items: List[mobile_phone_mast_repository.MobilePhoneMastInfo], *, date_format: str = '%d %b %Y'):
         self.__mast_info_items = mast_info_items
         self.__date_format = date_format
 
@@ -39,16 +39,8 @@ class FullMastInfoPresenter(IMastInfoPresenter):
     def __replace_empty_str_with_dash(self, input) -> str:
         return input if input else '-'
 
-    def __format_date(self, strdate) -> str:
-        if self.__date_format:
-            parsed_date_struct = time.strptime(strdate, '%d %b %Y')
-            parsed_date = datetime.date(parsed_date_struct[0], parsed_date_struct[1], parsed_date_struct[2])
-            return parsed_date.strftime(self.__date_format)
-
-        return strdate
-        
-    def __formatted_lease_end(self) -> str:
-        pass
+    def __format_date(self, date) -> str:
+        return date.strftime(self.__date_format)
 
 class TalliedRentPesenterDecorator(IMastInfoPresenter):
 
