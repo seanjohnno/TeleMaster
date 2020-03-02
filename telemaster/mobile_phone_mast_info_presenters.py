@@ -26,3 +26,11 @@ class FullMastInfoPresenter:
 
     def __replace_empty_str_with_dash(self, input) -> str:
         return input if input else '-'
+
+class TalliedRentPesenterDecorator:
+
+    def __init__(self, presenter, mast_info_items: List[mobile_phone_mast_repository.MobilePhoneMastInfo]):
+        self.__mast_info_items = mast_info_items
+
+    def output_mast_info_items(self) -> str:
+        return ''
