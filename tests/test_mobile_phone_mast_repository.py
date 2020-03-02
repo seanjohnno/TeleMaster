@@ -20,12 +20,19 @@ class TestMastRepository(unittest.TestCase):
 
         repository = mobile_phone_mast_repository.MobilePhoneMastRepository(csv_file_location)
         mobile_telephone_mast_list = repository.list_all_masts()
-
         theaker_lane_mast = mobile_telephone_mast_list[TestMastRepository.THEAKER_LANE_CSV_ROW]
-        actual_property_name = theaker_lane_mast.property_name()
-        expected_property_name = 'Theaker Lane'
-        self.assertEqual(actual_property_name, expected_property_name)
-
+        
+        self.assertEquals(theaker_lane_mast.property_name(), 'Theaker Lane')
+        self.assertEquals(theaker_lane_mast.rent(), '12750.00')
+        self.assertEquals(theaker_lane_mast.lease_years(), '10')
+        self.assertEquals(theaker_lane_mast.tenant_name(), 'Everything Everywhere Ltd')
+        self.assertEquals(theaker_lane_mast.lease_start_date(), '29 Apr 2008')
+        self.assertEquals(theaker_lane_mast.lease_end_date(), '28 Apr 2018')  
+        self.assertEquals(theaker_lane_mast.property_1st_line_address(), 'Burnsall Grange')  
+        self.assertEquals(theaker_lane_mast.property_2nd_line_address(), 'Leeds')  
+        self.assertEquals(theaker_lane_mast.property_3rd_line_address(), '')  
+        self.assertEquals(theaker_lane_mast.property_4th_line_address(), 'LS12')  
+        self.assertEquals(theaker_lane_mast.property_unit_name(), 'Burnsall Grange - WYK0144')  
 
     def __get_mobile_phone_mast_csv_path(self):
         root_dir = pathlib.Path(__file__).parent.parent
