@@ -32,7 +32,7 @@ class QueryTenantMastCounts:
     def __init__(self, mast_repository: mobile_phone_mast_repository.MobilePhoneMastRepository):
         self.__mast_repository = mast_repository
 
-    def list_tentant_mast_counts(self) -> Dict[str, int]:
+    def list_tenant_mast_counts(self) -> Dict[str, int]:
         return collections.Counter( [ row.tenant_name() for row in self.__mast_repository.list_all_masts() ] )
 
 class QueryLeaseIsBetweenDates:

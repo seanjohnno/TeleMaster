@@ -67,7 +67,7 @@ class TestMastCountByTenantQuery(unittest.TestCase):
         ]
 
         mast_provider = mobile_phone_mast_queries.QueryTenantMastCounts(mock_mast_repo)
-        tenant_to_mastcount_dict = mast_provider.list_tentant_mast_counts()
+        tenant_to_mastcount_dict = mast_provider.list_tenant_mast_counts()
         
         self.assertEqual(tenant_to_mastcount_dict, {
             'Arqiva Ltd': 2,
