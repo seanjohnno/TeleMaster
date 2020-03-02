@@ -10,7 +10,7 @@ class IMastInfoPresenter:
 
 class FullMastInfoPresenter(IMastInfoPresenter):
 
-    def __init__(self, mast_info_items: List[mobile_phone_mast_repository.MobilePhoneMastInfo]):
+    def __init__(self, mast_info_items: List[mobile_phone_mast_repository.MobilePhoneMastInfo], *, date_format: str = None):
         self.__mast_info_items = mast_info_items
 
     def output_mast_info_items(self) -> str:

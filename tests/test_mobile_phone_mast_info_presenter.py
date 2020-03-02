@@ -18,6 +18,8 @@ class SharedTestData:
             'Current Rent':'12750.00'
         }
     
+class TestMastInfoPresenter(unittest.TestCase):
+    
     SINGLE_PHONE_MAST_INFO_ITEM = '\n'.join([
             '[Property Name]: Theaker Lane',
             '[Property Address 1]: Burnsall Grange',
@@ -32,8 +34,20 @@ class SharedTestData:
             '[Current Rent]: 12750.00'
         ])
 
-class TestMastInfoPresenter(unittest.TestCase):
-    
+    SINGLE_PHONE_MAST_INFO_ITEM_WITH_FORMATTED_DATE = '\n'.join([
+            '[Property Name]: Theaker Lane',
+            '[Property Address 1]: Burnsall Grange',
+            '[Property Address 2]: Leeds',
+            '[Property Address 3]: -',
+            '[Property Address 4]: LS12',
+            '[Unit Name]: Burnsall Grange - WYK0144',
+            '[Tenant Name]: Everything Everywhere Ltd',
+            '[Lease Start Date]: 29/04/2008',
+            '[Lease End Date]: 28/04/2018',
+            '[Lease Years]: 10',
+            '[Current Rent]: 12750.00'
+        ])
+
     def test_presenter_formats_data_correctly(self):
         presenter = mobile_phone_mast_info_presenters.FullMastInfoPresenter([
             mobile_phone_mast_repository.MobilePhoneMastInfo(SharedTestData.CSV_DATA),
@@ -41,9 +55,20 @@ class TestMastInfoPresenter(unittest.TestCase):
         ])
                 
         expected_output = '\n'.join([
-            SharedTestData.SINGLE_PHONE_MAST_INFO_ITEM, 
-            SharedTestData.SINGLE_PHONE_MAST_INFO_ITEM])
+            TestMastInfoPresenter.SINGLE_PHONE_MAST_INFO_ITEM, 
+            TestMastInfoPresenter.SINGLE_PHONE_MAST_INFO_ITEM])
 
+        actual_output = presenter.output_mast_info_items()
+        self.assertEqual(actual_output, expected_output)
+
+    def test_presenter_formats_date_when_format_is_supplied(self):
+        mast_info_list = [
+            mobile_phone_mast_repository.MobilePhoneMastInfo(SharedTestData.CSV_DATA)
+        ]
+
+        presenter = mobile_phone_mast_info_presenters.FullMastInfoPresenter(mast_info_list, date_format = "%d/%m/%Y")
+                
+        expected_output = TestMastInfoPresenter.SINGLE_PHONE_MAST_INFO_ITEM_WITH_FORMATTED_DATE
         actual_output = presenter.output_mast_info_items()
         self.assertEqual(actual_output, expected_output)
 
