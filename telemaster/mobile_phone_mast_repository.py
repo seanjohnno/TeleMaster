@@ -11,10 +11,10 @@ class MobilePhoneMastInfo:
         return self.__csv_row['Property Name']
 
     def rent(self):
-        return self.__csv_row['Current Rent']
+        return float(self.__csv_row['Current Rent'])
 
     def lease_years(self):
-        return self.__csv_row['Lease Years']
+        return int(self.__csv_row['Lease Years'])
 
     def tenant_name(self):
         return self.__csv_row['Tenant Name']
@@ -42,9 +42,6 @@ class MobilePhoneMastInfo:
         date = self.__csv_row['Lease End Date']
         return self.__parse_date(date)
     
-    def current_rent(self):
-        return self.__csv_row['Current Rent']
-
     def __parse_date(self, date):
         parsed_date_struct = time.strptime(date, '%d %b %Y')
         return datetime.date(parsed_date_struct[0], parsed_date_struct[1], parsed_date_struct[2])

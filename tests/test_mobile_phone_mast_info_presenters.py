@@ -31,7 +31,7 @@ class TestMastInfoPresenter(unittest.TestCase):
             '[Lease Start Date]: 29 Apr 2008',
             '[Lease End Date]: 28 Apr 2018',
             '[Lease Years]: 10',
-            '[Current Rent]: 12750.00'
+            '[Current Rent]: 12750.0'
         ])
 
     SINGLE_PHONE_MAST_INFO_ITEM_WITH_FORMATTED_DATE = '\n'.join([
@@ -45,7 +45,7 @@ class TestMastInfoPresenter(unittest.TestCase):
             '[Lease Start Date]: 29/04/2008',
             '[Lease End Date]: 28/04/2018',
             '[Lease Years]: 10',
-            '[Current Rent]: 12750.00'
+            '[Current Rent]: 12750.0'
         ])
 
     def test_presenter_formats_data_correctly(self):
@@ -54,7 +54,7 @@ class TestMastInfoPresenter(unittest.TestCase):
             mobile_phone_mast_repository.MobilePhoneMastInfo(SharedTestData.CSV_DATA)
         ])
                 
-        expected_output = '\n'.join([
+        expected_output = '\n\n'.join([
             TestMastInfoPresenter.SINGLE_PHONE_MAST_INFO_ITEM, 
             TestMastInfoPresenter.SINGLE_PHONE_MAST_INFO_ITEM])
 
@@ -89,7 +89,7 @@ class TestTalliedRentDecorator(unittest.TestCase):
 
         presenter = mobile_phone_mast_info_presenters.TalliedRentPesenterDecorator(mock_presenter, mast_info_items)
                 
-        expected_output = "\n[TOTAL RENT]: 25500.00"
+        expected_output = "\n\n[TOTAL RENT]: 25500.00"
         actual_output = presenter.output_mast_info_items()
         self.assertEquals(actual_output, expected_output)
     

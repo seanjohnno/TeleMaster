@@ -1,8 +1,10 @@
 import collections
 import datetime
+from operator import methodcaller
 import time
 from telemaster import mobile_phone_mast_repository
 from typing import Dict, List
+
 
 class QueryByAscendingRent:
 
@@ -13,7 +15,7 @@ class QueryByAscendingRent:
 
     def list_masts(self) -> List[mobile_phone_mast_repository.MobilePhoneMastRepository]:  
         all_masts = self.__mast_repository.list_all_masts()
-        ascending_rent_sorted_masts = sorted(all_masts, key=mobile_phone_mast_repository.MobilePhoneMastInfo.rent)
+        ascending_rent_sorted_masts = sorted(all_masts, key=methodcaller('rent'))
         return ascending_rent_sorted_masts[:QueryByAscendingRent.ITEM_LIMIT]
 
 class QueryBy25LeaseYears:

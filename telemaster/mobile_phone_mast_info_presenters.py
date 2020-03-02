@@ -17,11 +17,10 @@ class FullMastInfoPresenter(IMastInfoPresenter):
         self.__date_format = date_format
 
     def output_mast_info_items(self) -> str:
-        return '\n'.join(self.__mast_info_to_str(mast_info_item) for mast_info_item in self.__mast_info_items)
+        return '\n\n'.join(self.__mast_info_to_str(mast_info_item) for mast_info_item in self.__mast_info_items)
 
     def __mast_info_to_str(self, mast_info_item: mobile_phone_mast_repository.MobilePhoneMastInfo) -> str:
-        
-        
+
         return '\n'.join([
             f'[Property Name]: {self.__replace_empty_str_with_dash(mast_info_item.property_name())}',
             f'[Property Address 1]: {self.__replace_empty_str_with_dash(mast_info_item.property_1st_line_address())}',
@@ -50,7 +49,7 @@ class TalliedRentPesenterDecorator(IMastInfoPresenter):
 
     def output_mast_info_items(self) -> str:
         tallied_rent = sum([float(mast_info.rent()) for mast_info in self.__mast_info_items])
-        return f'{self.__wrapped_presenter.output_mast_info_items()}\n[TOTAL RENT]: {tallied_rent:.2f}'
+        return f'{self.__wrapped_presenter.output_mast_info_items()}\n\n[TOTAL RENT]: {tallied_rent:.2f}'
 
 class TenantToMastCountPresenter(IMastInfoPresenter):
     def __init__(self, tenant_to_mastcounts: Dict[str, int]):

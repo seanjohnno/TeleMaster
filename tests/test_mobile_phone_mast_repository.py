@@ -24,8 +24,8 @@ class TestMastRepository(unittest.TestCase):
         theaker_lane_mast = mobile_telephone_mast_list[TestMastRepository.THEAKER_LANE_CSV_ROW]
         
         self.assertEquals(theaker_lane_mast.property_name(), 'Theaker Lane')
-        self.assertEquals(theaker_lane_mast.rent(), '12750.00')
-        self.assertEquals(theaker_lane_mast.lease_years(), '10')
+        self.assertEquals(theaker_lane_mast.rent(), 12750.0)
+        self.assertEquals(theaker_lane_mast.lease_years(), 10)
         self.assertEquals(theaker_lane_mast.tenant_name(), 'Everything Everywhere Ltd')
         self.assertEquals(theaker_lane_mast.lease_start_date(), datetime.date(2008, 4, 29))
         self.assertEquals(theaker_lane_mast.lease_end_date(), datetime.date(2018, 4, 28))  
