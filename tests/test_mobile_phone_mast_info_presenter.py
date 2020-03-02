@@ -8,10 +8,10 @@ class TestMastInfoPresenter(unittest.TestCase):
     def test_presenter_formats_data_correctly(self):
         dict_input = {
             'Property Name': 'Theaker Lane',
-            'Property Address 1':'Burnsall Grange',
-            'Property Address 2':'Leeds',
-            'Property Address 3':'',
-            'Property Address 4':'LS12',
+            'Property Address [1]':'Burnsall Grange',
+            'Property  Address [2]':'Leeds',
+            'Property Address [3]':'',
+            'Property Address [4]':'LS12',
             'Unit Name':'Burnsall Grange - WYK0144',
             'Tenant Name':'Everything Everywhere Ltd',
             'Lease Start Date':'29 Apr 2008',
