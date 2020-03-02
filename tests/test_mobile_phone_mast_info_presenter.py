@@ -64,6 +64,6 @@ class TestTalliedRentDecorator(unittest.TestCase):
 
         presenter = mobile_phone_mast_info_presenters.TalliedRentPesenterDecorator(mock_presenter, mast_info_items)
                 
-        expected_output = "\n[TOTAL RENT]: 25500"
+        expected_output = "\n[TOTAL RENT]: 25500.00"
         actual_output = presenter.output_mast_info_items()
         self.assertEquals(actual_output, expected_output)
