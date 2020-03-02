@@ -54,7 +54,9 @@ class TalliedRentPesenterDecorator(IMastInfoPresenter):
 
 class TenantToMastCountPresenter(IMastInfoPresenter):
     def __init__(self, tenant_to_mastcounts: Dict[str, int]):
-        self.tenant_to_mastcounts = tenant_to_mastcounts
+        self.__tenant_to_mastcounts = tenant_to_mastcounts
 
     def output_mast_info_items(self) -> str:
-        return ""
+        return '\n'.join([
+             f'[Tenant Name]: {k} [Mast Count]: {v}' for (k,v) in self.__tenant_to_mastcounts.items()
+        ])
