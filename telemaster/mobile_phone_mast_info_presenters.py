@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import datetime
 import time
-from typing import List
+from typing import List, Dict
 from telemaster import mobile_phone_mast_repository
 
 class IMastInfoPresenter:
@@ -51,3 +51,10 @@ class TalliedRentPesenterDecorator(IMastInfoPresenter):
     def output_mast_info_items(self) -> str:
         tallied_rent = sum([float(mast_info.rent()) for mast_info in self.__mast_info_items])
         return f'{self.__wrapped_presenter.output_mast_info_items()}\n[TOTAL RENT]: {tallied_rent:.2f}'
+
+class TenantToMastCountPresenter(IMastInfoPresenter):
+    def __init__(self, tenant_to_mastcounts: Dict[str, int]):
+        self.tenant_to_mastcounts = tenant_to_mastcounts
+
+    def output_mast_info_items(self) -> str:
+        return ""

@@ -92,3 +92,21 @@ class TestTalliedRentDecorator(unittest.TestCase):
         expected_output = "\n[TOTAL RENT]: 25500.00"
         actual_output = presenter.output_mast_info_items()
         self.assertEquals(actual_output, expected_output)
+    
+class TestTenantToMastCountPresenter(unittest.TestCase):
+    
+    def test_tenant_to_mast_count_is_displayed_correctly(self):
+
+        tenant_to_mast_count_dict = {
+            "Tenant 1": 10,
+            "Tenant 2": 4
+        }
+
+        presenter = mobile_phone_mast_info_presenters.TenantToMastCountPresenter(tenant_to_mast_count_dict)
+        actual_output = presenter.output_mast_info_items()
+        
+        actual_output_lines = actual_output.splitlines()
+        self.assertEquals(len(actual_output_lines), 2)
+        self.assertTrue("[Tenant Name]: Tenant 1 [Mast Count]: 10" in actual_output_lines)
+        self.assertTrue("[Tenant Name]: Tenant 2 [Mast Count]: 4" in actual_output_lines)
+        
